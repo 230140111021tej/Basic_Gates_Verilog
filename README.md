@@ -1,6 +1,6 @@
 # 🔌 Basic Logic Gates in Verilog HDL
 
-A minimal Verilog HDL project implementing the fundamental digital logic gates: **AND, OR, NOT, NAND, NOR, XOR, XNOR**. Includes a testbench to demonstrate and verify each gate.
+A minimal Verilog HDL project implementing all fundamental digital logic gates: **AND, OR, NOT, NAND, NOR, XOR, XNOR**. Includes a compact testbench to demonstrate and verify each gate, making it ideal for learning, coursework, or interview prep.
 
 ---
 
@@ -12,6 +12,7 @@ A minimal Verilog HDL project implementing the fundamental digital logic gates: 
 - [Testbench & Example Output](#testbench--example-output)
 - [File Structure](#file-structure)
 - [How to Run](#how-to-run)
+- [References](#references)
 - [License](#license)
 - [Contact](#contact)
 
@@ -19,20 +20,24 @@ A minimal Verilog HDL project implementing the fundamental digital logic gates: 
 
 ## About
 
-This project is a classic HDL exercise. It defines individual Verilog modules for each basic gate, along with a compact testbench. Ideal for learning, interviews, or digital design verifications.
+This project is a classic HDL exercise. It defines individual Verilog modules for each basic gate, along with a simple testbench.  
+Perfect for learning, interviews, digital design labs, or as a reference implementation.
 
 ---
 
 ## Features
 
-- **Seven gate modules:** AND, OR, NOT, NAND, NOR, XOR, XNOR.
-- **Modular:** Each gate is an independent synthesizable module.
-- **Compact testbench:** Applies all input combinations (00, 01, 10, 11) to every gate and prints the results.
-- **Educational:** Reference implementation for students or interviewees.
+- **Seven gate modules:** AND, OR, NOT, NAND, NOR, XOR, XNOR  
+- **Modular:** Each gate is an independent, synthesizable module  
+- **Compact testbench:** Applies all input combinations (00, 01, 10, 11) and prints results  
+- **Educational:** Clear code and output for students or interview use
 
 ---
 
 ## Modules
+
+<details>
+<summary>Click to view Verilog source for each gate</summary>
 
 ### AND Gate
 ```verilog
@@ -40,54 +45,49 @@ module and_gate(input a, input b, output y);
     assign y = a & b;
 endmodule
 ```
-
 ### OR Gate
 ```verilog
 module or_gate(input a, input b, output y);
     assign y = a | b;
 endmodule
 ```
-
 ### NOT Gate
 ```verilog
 module not_gate(input a, output y);
     assign y = ~a;
 endmodule
 ```
-
 ### NAND Gate
 ```verilog
 module nand_gate(input a, input b, output y);
     assign y = ~(a & b);
 endmodule
 ```
-
 ### NOR Gate
 ```verilog
 module nor_gate(input a, input b, output y);
     assign y = ~(a | b);
 endmodule
 ```
-
 ### XOR Gate
 ```verilog
 module xor_gate(input a, input b, output y);
     assign y = a ^ b;
 endmodule
 ```
-
 ### XNOR Gate
 ```verilog
 module xnor_gate(input a, input b, output y);
     assign y = ~(a ^ b);
 endmodule
 ```
+</details>
 
 ---
 
 ## Testbench & Example Output
 
-### Testbench (test_gates.v)
+**Testbench (`test_gates.v`):**
 ```verilog
 `include "basic_gates.v"
 
@@ -132,27 +132,40 @@ A B | AND OR NAND NOR XOR XNOR NOT
 
 ```
 .
-├── basic_gates.v   // All logic gate modules
-├── test_gates.v    // Testbench for all gates
-├── README.md       // Documentation
+├── basic_gates.v    // All logic gate modules
+├── test_gates.v     // Testbench for all gates
+├── README.md        // Documentation
 ```
 
 ---
 
 ## How to Run
 
+> **Requires:** [Icarus Verilog](https://iverilog.fandom.com/wiki/Installation_Guide) (`iverilog`) or any Verilog simulator.
+
 1. **Simulation**
    ```sh
    iverilog -o test_gates test_gates.v basic_gates.v
    vvp test_gates
    ```
-   Output displays all results for every input combination.
+   Output will display results for all input combinations.
 
 2. **Waveform (Optional)**
-   ```sh
-   vvp test_gates
-   gtkwave dump.vcd  # If you add $dumpfile/$dumpvars to your testbench
-   ```
+   - Add `$dumpfile("dump.vcd"); $dumpvars;` to your testbench
+   - Run:
+     ```sh
+     vvp test_gates
+     gtkwave dump.vcd
+     ```
+
+---
+
+## References
+
+- [`basic_gates.v`](basic_gates.v) — Verilog HDL modules for all gates
+- [`test_gates.v`](test_gates.v) — Testbench for simulation of all gates
+- [NPTEL: Digital Circuits](https://onlinecourses.nptel.ac.in/noc23_ee49/preview) — Indian MOOC covering all logic basics
+- [Wikipedia: Logic gate](https://en.wikipedia.org/wiki/Logic_gate) — Overview and truth tables
 
 ---
 
